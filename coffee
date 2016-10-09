@@ -28,8 +28,10 @@ class SmarterCoffee:
     STR_DIVIDER = "\x7d"
 
     STATUS_OK = 0x00
+    STATUS_ALREADY_BREWING = 0x01
     STATUS_INVALID_ARGS = 0x04
     STATUS_NO_CARAFFE = 0x05
+    STATUS_NO_WATER = 0x06
     STATUS_LOW_WATER = 0x07
 
     CMD_GET_WIFI_APS = 13
@@ -74,11 +76,17 @@ class SmarterCoffee:
         if status == self.STATUS_OK:
             return 'OK'
 
+        elif status == self.STATUS_ALREADY_BREWING:
+            return 'ALREADY BREWING'
+
         elif status == self.STATUS_NO_CARAFFE:
             return 'NO CARAFFE'
 
         elif status == self.STATUS_INVALID_ARGS:
             return 'ONE OR MORE CONFIGURATION VALUES ARE INVALID'
+
+        elif status == self.STATUS_NO_WATER:
+            return 'NO WATER'
 
         elif status == self.STATUS_LOW_WATER:
             return 'LOW WATER LEVEL'
